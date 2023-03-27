@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@300&family=Tilt+Warp&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
