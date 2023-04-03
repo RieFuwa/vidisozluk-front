@@ -20,9 +20,9 @@ import Tarih from "./pages/PageList/Tarih";
 import Ekonomi from "./pages/PageList/Ekonomi";
 import Egitim from "./pages/PageList/Egitim";
 import CreateComment from "./components/createComment/CreateComment";
-import AdminPage from "./components/admin/pages/AdminPage";
-import AllUser from "./components/admin/pages/AllUser";
-import ReportOperations from "./components/admin/pages/ReportOperation";
+import AdminPage from "./admin/pages/AdminPage";
+import AllUser from "./admin/pages/AllUser";
+import ReportOperations from "./admin/pages/ReportOperation";
 
 function App() {
   const WithNavbar = () => (

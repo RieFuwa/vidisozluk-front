@@ -2,8 +2,8 @@ import AdminNavbar from "../layouts/AdminNavbar";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import ShowTitle from "../../showTitle/ShowTitle";
-import { formatDate } from "../../FormatDate/StringFormatter";
+import ShowTitle from "../../components/showTitle/ShowTitle";
+import { formatDate } from "../../components/FormatDate/StringFormatter";
 
 function ReportOperations() {
   const [error, setError] = useState(null);

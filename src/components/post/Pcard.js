@@ -6,11 +6,6 @@ import React, { useEffect, useState } from "react";
 import { formatDate } from "../FormatDate/StringFormatter";
 import CreateTitle from "../createTitle/CreateTitle";
 import CreateComment from "../createComment/CreateComment";
-import { useParams } from "react-router";
-import { isEmptyObject } from "jquery";
-import AllUser from "../admin/pages/AllUser";
-import { render } from "@testing-library/react";
-import Main from "../../pages/Main";
 
 function PostCard(props) {
   const [error, setError] = useState(null);

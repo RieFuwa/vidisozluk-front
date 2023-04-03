@@ -1,5 +1,5 @@
 import AdminNavbar from "../layouts/AdminNavbar";
-import Pagination from "../aComponents/pagination/Pagination";
+import Pagination from "../Components/pagination/Pagination";
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";

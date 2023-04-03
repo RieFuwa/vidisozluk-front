@@ -9,13 +9,11 @@ import {
   LinearScale,
   PointElement,
 } from "chart.js";
-import { formatDate } from "../../../FormatDate/StringFormatter";
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
-function PostCharts() {
+function ReportCharts() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [allPost, setAllPost] = useState([]);
-  const [allPostType, setAllPostType] = useState([]);
 
   const getAllPost = () => {
     axios
@@ -34,39 +32,20 @@ function PostCharts() {
         }
       );
   };
-  const getAllPostType = () => {
-    axios
-      .get("/postType/getAll")
-      .then(function (response) {
-        return response.data;
-      })
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setAllPostType(result);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
-  };
   useEffect(() => {
     getAllPost();
-    getAllPostType();
   }, []);
-
   const data = {
-    labels: allPostType?.map((key) => key.postTypeName),
+    labels: allPost?.map((key) => key.id),
     datasets: [
       {
-        data: [1, 2, 3, 4, 5, 6, 20],
+        data: allPost?.map((key) => key.reportlist.length),
         backgroundColor: "transparent",
         borderColor: "#F32323  ",
         pointBorderColor: "black",
         pointBorderWith: 4,
 
-        tension: 0.4,
+        tension: 0.5,
       },
     ],
   };
@@ -83,19 +62,19 @@ function PostCharts() {
       },
       y: {
         min: 2,
-        max: 102,
+        max: 10,
         ticks: {
-          stepSize: 1,
+          stepSize: 4,
         },
       },
     },
   };
   return (
-    <div class=" w-auto h-96 font-bodyFont font-semibold mt-4">
-      <p>Başlık Sayıları</p>
+    <div class="container mt-5 ml-30 w-auto h-96 font-bodyFont font-semibold">
+      <p class="text-2xl mt-4 font-bodyFont font-semibold ">Şikayet Edilen Başlıklar</p>
 
       <Line data={data}></Line>
     </div>
   );
 }
-export default PostCharts;
+export default ReportCharts;
