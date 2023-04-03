@@ -15,7 +15,7 @@ function Tarih() {
 
   const getAllPost = () => {
     axios
-      .get("/post/getAllPostTypePost?postTypeId=4")
+      .get("/post/getAllPostTypePost?postTypeId=3")
       .then(function (response) {
         return response.data;
       })

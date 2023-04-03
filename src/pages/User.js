@@ -1,10 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  FaArrowAltCircleUp,
-  FaArrowAltCircleDown,
-  FaExclamationCircle,
-  FaPencilAlt,
-} from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
@@ -57,6 +51,7 @@ function User() {
         }
       );
   };
+  
   useEffect(() => {
     getUserById();
     if (isInitialMount.current) {

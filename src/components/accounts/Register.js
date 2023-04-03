@@ -6,12 +6,17 @@ function Register() {
   const [isSend, setIsSend] = useState(false);
   let navigate = useNavigate();
 
+  const [addRole, setAddRole] = useState({
+    userId: "",
+    roleId: "",
+  });
+
   const [user, setUser] = useState({
-    userTypeId: "2",
     userName: "",
     userMail: "",
     userPassword: "",
     confirmPassword: "",
+    isVerified: false,
   });
 
   const [formError, setFormError] = useState({
@@ -28,7 +33,7 @@ function Register() {
     setIsSend(false);
   };
 
-  const validateFormInput = (event) => {
+  const validateFormInput = async (event) => {
     event.preventDefault();
     let inputError = {
       userName: "",
@@ -52,16 +57,30 @@ function Register() {
       return;
     }
     setFormError(inputError);
-    onSubmit();
+    await onSubmit();
+    await addRoleToUser();
+    navigate("/login");
   };
-
+  const addRoleToUser = async (e) => {
+    await axios
+      .post("/role/addRoleToUser", {
+        userId: localStorage.getItem("signedUserId"),
+        roleId: 1,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   const onSubmit = async (e) => {
     await axios.post("/user/add", user).then(function (response) {
-      if (response) {
-        setIsSend(true);
-        navigate("/");
-      }
+      localStorage.setItem("signedUserId", response.data.userId);
+      console.log(response.data.userId);
+      console.log(response.data.message);
     });
+    setIsSend(true);
   };
 
   return (

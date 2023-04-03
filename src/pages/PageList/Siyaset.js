@@ -15,7 +15,7 @@ function Siyaset() {
 
   const getAllPost = () => {
     axios
-      .get("/post/getAllPostTypePost?postTypeId=3")
+      .get("/post/getAllPostTypePost?postTypeId=2")
       .then(function (response) {
         return response.data;
       })

@@ -142,12 +142,12 @@ export default function CreateTitle(props) {
                   required
                 >
                   <option selected>baslik türünü seç</option>
-                  <option value={5}>ekonomi</option>
-                  <option value={2}>spor</option>
-                  <option value={3}>siyaset</option>
-                  <option value={4}>tarih</option>
-                  <option value={6}>müzik</option>
-                  <option value={7}>teknoloji</option>
+                  <option value={1}>spor</option>
+                  <option value={2}>siyaset</option>
+                  <option value={3}>tarih</option>
+                  <option value={4}>ekonomi</option>
+                  <option value={5}>müzik</option>
+                  <option value={6}>teknoloji</option>                    
                 </select>
 
                 <textarea

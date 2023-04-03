@@ -15,7 +15,7 @@ function Muzik() {
 
   const getAllPost = () => {
     axios
-      .get("/post/getAllPostTypePost?postTypeId=6")
+      .get("/post/getAllPostTypePost?postTypeId=5")
       .then(function (response) {
         return response.data;
       })

@@ -15,7 +15,7 @@ function Ekonomi() {
 
   const getAllPost = () => {
     axios
-      .get("/post/getAllPostTypePost?postTypeId=5")
+      .get("/post/getAllPostTypePost?postTypeId=4")
       .then(function (response) {
         return response.data;
       })

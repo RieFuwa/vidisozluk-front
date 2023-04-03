@@ -15,7 +15,7 @@ function Spor() {
 
   const getAllPost = () => {
     axios
-      .get("/post/getAllPostTypePost?postTypeId=2")
+      .get("/post/getAllPostTypePost?postTypeId=1")
       .then(function (response) {
         return response.data;
       })

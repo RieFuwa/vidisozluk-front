@@ -15,7 +15,7 @@ function Egitim() {
 
   const getAllPost = () => {
     axios
-      .get("/post/getAllPostTypePost?postTypeId=7")
+      .get("/post/getAllPostTypePost?postTypeId=6")
       .then(function (response) {
         return response.data;
       })
