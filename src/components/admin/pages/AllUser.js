@@ -35,6 +35,7 @@ function AllUser() {
   const indexOfLastUser = currentPage * userPerPage;
   const indexOfFirstUser = indexOfLastUser - userPerPage;
   const currentUser = allUser.slice(indexOfFirstUser, indexOfLastUser);
+  
   const deleteUser = async (id) => {
     axios.delete(`/user/${id}`).catch(function (error) {
       console.log(error);

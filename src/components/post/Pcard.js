@@ -63,7 +63,7 @@ function PostCard(props) {
             onChange={inputHandler}
           />
           <div class="flex  justify-end  ">
-            <CreateTitle userId={203} getAllPost={getAllPost}></CreateTitle>
+            <CreateTitle userId={354} getAllPost={getAllPost}></CreateTitle>
           </div>
         </div>
 
@@ -95,9 +95,7 @@ function PostCard(props) {
                       </p>
                       <p class="row text-gray-600 dark:text-white">
                         {" "}
-                        To get social media testimonials like these, keep your
-                        customers engaged with your social media accounts by
-                        posting regularly yourself
+                       {key.postText}
                       </p>
                       <div class="flex items-center mt-4">
                         <Link to={{ pathname: "/user/" + key.user.id }}>
@@ -118,13 +116,13 @@ function PostCard(props) {
                             <FaHeart class="text-red-500 text-2xl"> </FaHeart>
                             &nbsp; 11
                             <ReportTitle
-                              userId={203}
+                              userId={354}
                               postId={key.id}
                             ></ReportTitle>
                             <CreateComment
                               postId={key.id}
                               connectedPostId={key.id}
-                              userId={203}
+                              userId={354}
                               postTypeId={key.postType.id}
                             ></CreateComment>
                           </span>

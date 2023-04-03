@@ -62,9 +62,7 @@ function Muzik() {
                       <p class="row text-gray-600 dark:text-white">
                         {" "}
                       
-                        To get social media testimonials like these, keep your
-                        customers engaged with your social media accounts by
-                        posting regularly yourself
+                        {key.postText}
                       </p>
                       <div class="flex items-center mt-4">
                         <Link to={{ pathname: "/user/" + key.user.id }}>
