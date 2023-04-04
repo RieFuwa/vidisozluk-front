@@ -10,6 +10,7 @@ export default function ShowTitle(props) {
   const { postId, userId } = props;
   const [postById, setPostById] = useState([]);
   const [setIsLoadedPost] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const getPostById = async () => {
     await axios
@@ -27,6 +28,7 @@ export default function ShowTitle(props) {
         }
       );
   };
+ 
   useEffect(() => {
     getPostById();
   }, []);
@@ -34,10 +36,11 @@ export default function ShowTitle(props) {
     <>
       <button
         class="cursor-pointer text-white bg-lime-500 px-2 py-1  hover:bg-lime-600 rounded-full  align-middle ml-3  text-sm"
-       
         type="button"
         onClick={() => setShowModal(true)}
-      >başliga git</button>
+      >
+        başliga git
+      </button>
       {showModal ? (
         <>
           <div className="justify-center lowercase items-center font-bodyFont  overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -52,6 +55,7 @@ export default function ShowTitle(props) {
                       {postById.user.userName.charAt(1)}
                     </button>
                   </Link>
+                  
                   <div class="flex flex-col justify-between">
                     <span class="text-sm flex items-center mt-2   align-middle  text-lime-60">
                       <Link to={{ pathname: "/user/" + postById.user.id }}>
@@ -63,6 +67,7 @@ export default function ShowTitle(props) {
                       baslık acılma tarihi: {formatDate(postById.createDate)}
                     </p>
                   </div>
+                 
                 </div>
                 {/*body*/}
 

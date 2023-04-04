@@ -58,7 +58,16 @@ function PostCard(props) {
             onChange={inputHandler}
           />
           <div class="flex  justify-end  ">
-            <CreateTitle userId={354} getAllPost={getAllPost}></CreateTitle>
+            {localStorage.getItem("signedUserId") == null ? (
+              <Link to="/login">
+                <CreateTitle></CreateTitle>
+              </Link>
+            ) : (
+              <CreateTitle
+                userId={localStorage.getItem("signedUserId")}
+                getAllPost={getAllPost}
+              ></CreateTitle>
+            )}
           </div>
         </div>
 
@@ -79,7 +88,11 @@ function PostCard(props) {
             })
             .map((key) => {
               if (!key.id) {
-                return <div class="text-2xl font-bodyFont font-semibold ">HENUZ VERİ BULUNAMADI</div>;
+                return (
+                  <div class="text-2xl font-bodyFont font-semibold ">
+                    HENUZ VERİ BULUNAMADI
+                  </div>
+                );
               }
               if (key.connectedPostId === null)
                 return (
@@ -90,7 +103,7 @@ function PostCard(props) {
                       </p>
                       <p class="row text-gray-600 dark:text-white">
                         {" "}
-                       {key.postText}
+                        {key.postText}
                       </p>
                       <div class="flex items-center mt-4">
                         <Link to={{ pathname: "/user/" + key.user.id }}>
@@ -106,21 +119,44 @@ function PostCard(props) {
                             </Link>
                             &emsp;
                           </span>
-                          <span class="flex items-center text-xs dark:text-gray-400">
-                            {formatDate(key.createDate)} &emsp;{" "}
-                            <FaHeart class="text-red-500 text-2xl"> </FaHeart>
-                            &nbsp; 11
-                            <ReportTitle
-                              userId={354}
-                              postId={key.id}
-                            ></ReportTitle>
-                            <CreateComment
-                              postId={key.id}
-                              connectedPostId={key.id}
-                              userId={354}
-                              postTypeId={key.postType.id}
-                            ></CreateComment>
-                          </span>
+                          {localStorage.getItem("signedUserId") == null ? (
+                            <Link to="/login">
+                              <span class="flex items-center text-xs dark:text-gray-400">
+                                {formatDate(key.createDate)} &emsp;{" "}
+                                <FaHeart class="text-red-500 text-2xl">
+                                  {" "}
+                                </FaHeart>
+                                &nbsp; 11
+                                <ReportTitle
+                                  userId={localStorage.getItem("signedUserId")}
+                                  postId={key.id}
+                                ></ReportTitle>
+                                <CreateComment
+                                  getAllPost={getAllPost}
+                                  postId={key.id}
+                                  connectedPostId={key.id}
+                                  userId={localStorage.getItem("signedUserId")}
+                                  postTypeId={key.postType.id}
+                                ></CreateComment>
+                              </span>{" "}
+                            </Link>
+                          ) : (
+                            <span class="flex items-center text-xs dark:text-gray-400">
+                              {formatDate(key.createDate)} &emsp;{" "}
+                              <FaHeart class="text-red-500 text-2xl"> </FaHeart>
+                              &nbsp; 11
+                              <ReportTitle
+                                userId={localStorage.getItem("signedUserId")}
+                                postId={key.id}
+                              ></ReportTitle>
+                              <CreateComment
+                                postId={key.id}
+                                connectedPostId={key.id}
+                                userId={localStorage.getItem("signedUserId")}
+                                postTypeId={key.postType.id}
+                              ></CreateComment>
+                            </span>
+                          )}
                         </div>
                       </div>
                     </div>

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { formatDate } from "../FormatDate/StringFormatter";
 import { FaHeart } from "react-icons/fa";
 import axios from "axios";
+import { DeleteWithAuth, PostWithAuth } from "../../services/HttpService";
 
 export default function CreateComment(props) {
   const [setIsLoadedPost] = useState(false);
@@ -13,7 +14,9 @@ export default function CreateComment(props) {
   const [postCommentById, setPostCommentById] = useState([]);
   const [showModal, setShowModal] = React.useState(false);
   const isInitialMount = useRef(true);
-  const { postId, connectedPostId, userId, postTypeId } = props;
+  const { postId, connectedPostId, userId, postTypeId,getAllPost } = props;
+  const [isDeleted, setIsDeleted] = useState(false);
+
   let navigate = useNavigate();
 
   const [postComment, setPostComment] = useState({
@@ -48,13 +51,12 @@ export default function CreateComment(props) {
     }
   };
   const sendComment = async () => {
-    await axios
-      .post("/post/add", {
-        connectedPostId: postId,
-        postTypeId: postTypeId,
-        userId: userId,
-        postText: postComment.postText,
-      })
+    await PostWithAuth("/post/add", {
+      connectedPostId: postId,
+      postTypeId: postTypeId,
+      userId: userId,
+      postText: postComment.postText,
+    })
       .then(function (response) {
         console.log(response);
       })
@@ -94,6 +96,14 @@ export default function CreateComment(props) {
           console.log(error);
         }
       );
+  };
+
+  const deleteComment = async () => {
+    axios.delete("/post/" + postId, {
+      headers: { authorization: localStorage.getItem("token") },
+    });    
+    navigate("/user/"+localStorage.getItem("signedUserId"));
+    await getAllPost()
   };
 
   useEffect(() => {
@@ -153,7 +163,6 @@ export default function CreateComment(props) {
                   </div>
                   <div class="  grid grid-cols-1 sm:grid-cols-1  lg:grid-cols-2 2xl:grid-cols-2 gap-4 p-2 ">
                     {postCommentById.map((key, index) => (
-                      
                       <div class="bg-white dark:bg-gray-800 w-96 shadow shadow-gray-500 mx-auto rounded-xl p-4">
                         <p class="row text-gray-600 text-base dark:text-white">
                           {" "}
@@ -204,7 +213,18 @@ export default function CreateComment(props) {
                         {formError.postText}
                       </p>
                     </div>
-
+                    {postById.user.id ==
+                    localStorage.getItem("signedUserId") ? (
+                      <div class="col-auto">
+                        <button
+                          type="button"
+                          className="text-white bg-red-500 hover:bg-red-600 duration-200 transition ease-in border-2 rounded-lg background-transparent font-bold  px-5 py-3 text-sm outline-none focus:outline-none m-2 "
+                          onClick={deleteComment}
+                        >
+                          Başlığı Sil
+                        </button>
+                      </div>
+                    ) : null}
                     <button
                       className="text-white bg-red-500 hover:bg-red-600 duration-200 transition ease-in border-2 rounded-lg background-transparent font-bold  px-5 py-3 text-sm outline-none focus:outline-none m-2 "
                       type="button"

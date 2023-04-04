@@ -3,6 +3,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import { Dialog, DialogBody } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { PostWithAuth } from "../../services/HttpService";
 
 export default function CreateTitle(props) {
   const [open, setOpen] = useState(false);
@@ -63,13 +64,12 @@ export default function CreateTitle(props) {
   };
 
   const sendPost = async () => {
-    await axios
-      .post("/post/add", {
-        postTypeId: title.postTypeId,
-        userId: userId,
-        postTitle: title.postTitle,
-        postText: title.postText,
-      })
+    await PostWithAuth("/post/add", {
+      postTypeId: title.postTypeId,
+      userId: userId,
+      postTitle: title.postTitle,
+      postText: title.postText,
+    })
       .then(function (response) {
         console.log(response);
       })
@@ -147,7 +147,7 @@ export default function CreateTitle(props) {
                   <option value={3}>tarih</option>
                   <option value={4}>ekonomi</option>
                   <option value={5}>müzik</option>
-                  <option value={6}>teknoloji</option>                    
+                  <option value={6}>teknoloji</option>
                 </select>
 
                 <textarea

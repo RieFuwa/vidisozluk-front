@@ -12,11 +12,13 @@ function AllUser() {
   const [qss, setQss] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [userPerPage] = useState(5);
-  const paginate=pageNumber=>setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const getAllUser = () => {
+  const getAllUser = async () => {
     axios
-      .get("/user/getAll")
+      .get("/user/getAll", {
+        headers: { authorization: localStorage.getItem("token") },
+      })
       .then(function (response) {
         return response.data;
       })
@@ -35,7 +37,7 @@ function AllUser() {
   const indexOfLastUser = currentPage * userPerPage;
   const indexOfFirstUser = indexOfLastUser - userPerPage;
   const currentUser = allUser.slice(indexOfFirstUser, indexOfLastUser);
-  
+
   const deleteUser = async (id) => {
     axios.delete(`/user/${id}`).catch(function (error) {
       console.log(error);
@@ -144,7 +146,9 @@ function AllUser() {
                           </td>
                           <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                             <p class="text-gray-900 whitespace-no-wrap">
-                             {key.roles.map((i)=><div>{i.roleName}</div>)}
+                              {key.roles.map((i) => (
+                                <div>{i.roleName}</div>
+                              ))}
                             </p>
                           </td>
                           <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
@@ -189,7 +193,11 @@ function AllUser() {
                   </tbody>
                 </table>
                 <div class="flex flex-col items-center px-5 py-5 bg-white xs:flex-row xs:justify-between">
-                  <Pagination userPerPage={userPerPage} totalUser={allUser.length} paginate={paginate} ></Pagination>
+                  <Pagination
+                    userPerPage={userPerPage}
+                    totalUser={allUser.length}
+                    paginate={paginate}
+                  ></Pagination>
                   {/* <div class="flex items-center">
                     <button
                       type="button"

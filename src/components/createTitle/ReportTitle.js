@@ -3,6 +3,7 @@ import { FaExclamationCircle } from "react-icons/fa";
 import { Dialog, DialogBody } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { PostWithAuth } from "../../services/HttpService";
 
 export default function ReportTitle(props) {
   const { postId, userId } = props;
@@ -40,8 +41,7 @@ export default function ReportTitle(props) {
   };
 
   const sendReport = async () => {
-    await axios
-      .post("/report/add", {
+    await PostWithAuth("/report/add", {
         userId: userId,
         postId: postId,
         reportText: reportText,
