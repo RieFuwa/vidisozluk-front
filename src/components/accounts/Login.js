@@ -46,7 +46,17 @@ function Login() {
     await axios.post("/userAuth/register", user).then(function (response) {
       localStorage.setItem("token", response.data.accessToken);
       localStorage.setItem("signedUserId", response.data.userId);
-      console.log(localStorage.getItem("token"))
+      let roleList = new Array();
+      let a = JSON.parse(atob(localStorage.getItem("token").split(".")[1]));
+      for (let i = 0; i < a.roles.length; i++) {
+        roleList.push(a.roles[i]);
+      }
+      localStorage.setItem("role", JSON.stringify(roleList));
+      // var storedNames = JSON.stringify(localStorage.getItem("role"));
+      // console.log(storedNames);
+      // if (storedNames.includes("ROLE_USER")) {
+      //   console.log("slm");
+      // }
     });
     setIsSend(true);
     navigate(-1);

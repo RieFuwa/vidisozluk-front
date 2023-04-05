@@ -42,9 +42,12 @@ function AdminNavbar() {
           </Link>
         </div>
         <div class="hidden w-full navbar-menu lg:order-3 lg:block lg:w-2/5 lg:text-right">
-          <a class="block mt-4 mr-10 cursor-pointer text-blue-900 lg:inline-block lg:mt-0 hover:text-lime-600">
-            Content
-          </a>
+        <Link
+            to="/"
+            class="block mt-4 mr-10 cursor-pointer text-blue-900 lg:inline-block lg:mt-0 hover:text-lime-600"
+          >
+            Ana Menü
+          </Link>
           <a class="block mt-4 mr-10 cursor-pointer text-blue-900 lg:inline-block lg:mt-0 hover:text-lime-600">
             FAQ
           </a>

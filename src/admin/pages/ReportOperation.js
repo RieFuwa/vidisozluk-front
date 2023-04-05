@@ -13,20 +13,22 @@ function ReportOperations() {
 
   const getAllReport = () => {
     axios
-      .get("/report/getAll")
-      .then(function (response) {
-        return response.data;
-      })
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setAllReport(result);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
+    .get("/report/getAll", {
+      headers: { authorization: localStorage.getItem("token") },
+    })
+    .then(function (response) {
+      return response.data;
+    })
+    .then(
+      (result) => {
+        setIsLoaded(true);
+        setAllReport(result);
+      },
+      (error) => {
+        setIsLoaded(true);
+        setError(error);
+      }
+    );
   };
 
   const deletePost = async (postId) => {

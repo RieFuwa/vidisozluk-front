@@ -1,10 +1,14 @@
+import { Button } from "bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
   var navigate = useNavigate();
+  var roleList = JSON.stringify(localStorage.getItem("role"));
+
   const onLogoutClicked = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("signedUserId");
+    localStorage.removeItem("role");
     navigate("/");
   };
   return (
@@ -103,6 +107,18 @@ function Navbar() {
 
         <div class="flex items-center gap-2">
           <div class="sm:flex sm:gap-2">
+            {roleList.includes("ROLE_ADMIN") == true ? (
+              <Link to="/adminpage">
+                {console.log(roleList)}
+                <button
+                  class="px-4 py-2 bg-lime-600 sm:mt-1 npm install react-icons --save
+        hover:bg-lime-700  duration-200 transition text-white rounded-lg  text-sm font-medium   text-center"
+                  href="/"
+                >
+                  Admin Paneli
+                </button>
+              </Link>
+            ) : null}
             {localStorage.getItem("signedUserId") == null ? (
               <Link to="/login">
                 <button
