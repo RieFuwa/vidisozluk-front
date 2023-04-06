@@ -28,7 +28,7 @@ function PostTypeCount() {
     getAllPostTypeCount();
   }, []);
   return (
-    <div class="  mt-20 font-bodyFont  ">
+    <div class="  mt-20 ml-20 font-bodyFont  border border-black">
       <p class="text-xl font-bold px-3 py-1">Başlık Türüne Göre Başlık Sayısı</p>
       <table class="text-base leading-normal">
         <thead>

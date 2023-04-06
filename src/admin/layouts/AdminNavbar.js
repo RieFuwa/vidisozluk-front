@@ -46,7 +46,7 @@ function AdminNavbar() {
             to="/"
             class="block mt-4 mr-10 cursor-pointer text-blue-900 lg:inline-block lg:mt-0 hover:text-lime-600"
           >
-            Ana Menü
+            vıdı<span class="text-lime-600  ">Sözlük</span>
           </Link>
           <a class="block mt-4 mr-10 cursor-pointer text-blue-900 lg:inline-block lg:mt-0 hover:text-lime-600">
             FAQ

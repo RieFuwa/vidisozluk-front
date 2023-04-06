@@ -6,6 +6,7 @@ import axios from "axios";
 import ReportTitle from "../components/createTitle/ReportTitle";
 import { formatDate } from "../components/FormatDate/StringFormatter";
 import CreateComment from "../components/createComment/CreateComment";
+import { FaCheckCircle } from "react-icons/fa";
 
 function User() {
   const { userId } = useParams();
@@ -78,10 +79,18 @@ function User() {
               </div>{" "}
             </div>{" "}
           </div>{" "}
-          <div class="mt-28  text-center border-b pb-12">
+          <div class="mt-28 text-center border-b pb-12">
             {" "}
-            <h1 class="text-4xl font-medium text-gray-700">
-              {userById.userName}
+            <h1 class=" text-4xl font-medium flex justify-center  text-center text-gray-700">
+                {userById.userName}
+                <span class="">
+                {userById.isVerified == true ? (
+                  <FaCheckCircle class="text-lime-600 w-6 mt-1 ml-1 "></FaCheckCircle>
+                ) : null}
+                </span>
+              {/* {userById.isVerified == true ? (
+                  <FaCheckCircle class="text-lime-600 w-6 mt-1 ml-1 "></FaCheckCircle>
+                ) : null} */}
             </h1>{" "}
             <p class="font-light text-gray-600 mt-3">{userById.userMail} </p>{" "}
             <p class="mt-8 text-black">

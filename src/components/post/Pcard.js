@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { formatDate } from "../FormatDate/StringFormatter";
 import CreateTitle from "../createTitle/CreateTitle";
 import CreateComment from "../createComment/CreateComment";
+import { FaCheckCircle } from "react-icons/fa";
 
 function PostCard(props) {
   const [error, setError] = useState(null);
@@ -113,9 +114,16 @@ function PostCard(props) {
                           </button>
                         </Link>
                         <div class="flex flex-col justify-between ml-2">
-                          <span class="text-sm flex items-center align-middle font-semibold  text-lime-600">
+                          <span class="text-sm flex  items-center align-middle font-semibold  text-lime-600">
                             <Link to={{ pathname: "/user/" + key.user.id }}>
-                              <button>{key.user.userName}</button>
+                              <button class="flex justify-start">
+                                {key.user.userName}{" "}
+                                <span>
+                                  {key.user.isVerified == true ? (
+                                    <FaCheckCircle class="text-lime-600 w-4 mt-1 ml-1 "></FaCheckCircle>
+                                  ) : null}
+                                </span>
+                              </button>
                             </Link>
                             &emsp;
                           </span>

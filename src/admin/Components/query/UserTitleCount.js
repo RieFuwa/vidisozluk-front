@@ -28,8 +28,8 @@ function UserTitleCount() {
     getAllUserTitleCount();
   }, []);
   return (
-    <div class="mt-20   w-min-auto font-bodyFont ">
-              <p class="text-xl font-bold px-3 py-1">Kullanıcıların Aktivite Puanı </p>
+    <div class="mt-20   w-min-auto font-bodyFont  border border-black ">
+      <p class="text-xl font-bold px-3 py-1">Kullanıcıların Aktivite Puanı </p>
 
       <table class="min-50 text-base leading-normal">
         <thead>
@@ -66,7 +66,9 @@ function UserTitleCount() {
                 </div>
               </td>
               <td class="px-3 py-1 text-sm bg-white border-b border-gray-200">
-                <p class="text-gray-900 whitespace-no-wrap">{key.countTitle*100}</p>
+                <p class="text-gray-900 whitespace-no-wrap">
+                  {key.countTitle * 100}
+                </p>
               </td>
             </tr>
           ))}
