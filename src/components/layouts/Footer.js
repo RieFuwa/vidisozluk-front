@@ -11,7 +11,7 @@ function Footer() {
                 </h2>
                 <ul>
                   <li class="mb-4 transition-colors duration-200 hover:text-lime-600 dark:hover:text-white">
-                    <a href="#">Elements</a>
+                    <a href="https://bedirhankabatass.netlify.app/"target="_blank" >Website</a>
                   </li>
                 </ul>
               </div>
@@ -23,7 +23,7 @@ function Footer() {
                 </h2>
                 <ul>
                   <li class="mb-4 transition-colors duration-200 hover:text-lime-600 dark:hover:text-white">
-                    <a href="#">Github</a>
+                    <a href="https://github.com/RieFuwa "  target="_blank">Github</a>
                   </li>
                 </ul>
               </div>
@@ -35,7 +35,7 @@ function Footer() {
                 </h2>
                 <ul>
                   <li class="mb-4 transition-colors duration-200 hover:text-lime-600 dark:hover:text-white">
-                    <a href="#">Settings</a>
+                    <a  href="mailto:bedirhankabatas1@gmail.com">E-mail</a>
                   </li>
                 </ul>
               </div>

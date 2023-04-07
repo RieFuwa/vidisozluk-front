@@ -7,6 +7,7 @@ import ReportTitle from "../components/createTitle/ReportTitle";
 import { formatDate } from "../components/FormatDate/StringFormatter";
 import CreateComment from "../components/createComment/CreateComment";
 import { FaCheckCircle } from "react-icons/fa";
+import Notfication from "../components/notification/Notification";
 
 function User() {
   const { userId } = useParams();
@@ -82,12 +83,12 @@ function User() {
           <div class="mt-28 text-center border-b pb-12">
             {" "}
             <h1 class=" text-4xl font-medium flex justify-center  text-center text-gray-700">
-                {userById.userName}
-                <span class="">
+              {userById.userName}
+              <span class="">
                 {userById.isVerified == true ? (
                   <FaCheckCircle class="text-lime-600 w-6 mt-1 ml-1 "></FaCheckCircle>
                 ) : null}
-                </span>
+              </span>
               {/* {userById.isVerified == true ? (
                   <FaCheckCircle class="text-lime-600 w-6 mt-1 ml-1 "></FaCheckCircle>
                 ) : null} */}
@@ -96,6 +97,13 @@ function User() {
             <p class="mt-8 text-black">
               Aktivite Puanı: {userPost.length * 100}{" "}
             </p>{" "}
+            {userById.id ==
+                    localStorage.getItem("signedUserId") ? (
+                      <div class="col-auto">
+                         <Notfication></Notfication>
+                      </div>
+                    ) : null}
+          
             {/* <p class="mt-2 text-gray-500">Like Sayısı:</p>{" "} */}
           </div>{" "}
           <div class=" border-lime-600 border-2"></div>

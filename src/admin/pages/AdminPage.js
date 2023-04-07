@@ -18,8 +18,8 @@ function AdminPage() {
 
         <div class="  grid grid-cols-2 sm:grid-cols-1  lg:grid-cols-2 2xl:grid-cols-2  ">
           <div class="flex items-center  ">
-            <UserTitleCount></UserTitleCount>
             <PostTypeCount></PostTypeCount>
+            <UserTitleCount></UserTitleCount>
           </div>
         </div>
         <AreaCharts></AreaCharts>

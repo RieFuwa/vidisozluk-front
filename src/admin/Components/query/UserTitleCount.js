@@ -28,7 +28,7 @@ function UserTitleCount() {
     getAllUserTitleCount();
   }, []);
   return (
-    <div class="mt-20   w-min-auto font-bodyFont  border border-black ">
+    <div class="mt-20  ml-20   w-min-auto font-bodyFont  border border-black ">
       <p class="text-xl font-bold px-3 py-1">Kullanıcıların Aktivite Puanı </p>
 
       <table class="min-50 text-base leading-normal">
