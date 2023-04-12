@@ -79,16 +79,16 @@ function Tarih() {
                           </span>
                           <span class="flex items-center text-xs dark:text-gray-400">
                             {formatDate(key.createDate)} &emsp;{" "}
-                            <FaHeart class="text-red-500 text-2xl"> </FaHeart>
-                            &nbsp; 11
+                            
                             <ReportTitle
-                              userId={203}
-                              postId={key.id}
+                                  userId={localStorage.getItem("signedUserId")}
+                                  postId={key.id}
                             ></ReportTitle>
                             <CreateComment
                               postId={key.id}
                               connectedPostId={key.id}
-                              userId={203}
+                              userId={localStorage.getItem("signedUserId")}
+                              likeList={key.likeList}
                               postTypeId={key.postType.id}
                             ></CreateComment>
                           </span>

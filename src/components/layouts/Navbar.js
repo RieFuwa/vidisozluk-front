@@ -9,6 +9,7 @@ function Navbar() {
     localStorage.removeItem("token");
     localStorage.removeItem("signedUserId");
     localStorage.removeItem("role");
+    localStorage.removeItem("changePasswordUserMail");
     navigate("/");
   };
   return (

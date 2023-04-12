@@ -23,6 +23,8 @@ import CreateComment from "./components/createComment/CreateComment";
 import AdminPage from "./admin/pages/AdminPage";
 import AllUser from "./admin/pages/AllUser";
 import ReportOperations from "./admin/pages/ReportOperation";
+import ForgotPassword from "./components/accounts/ForgotPassword";
+import ChangePassword from "./components/accounts/ChangePassword";
 
 function App() {
   const WithNavbar = () => (
@@ -57,7 +59,8 @@ function App() {
           <Route exact path="/login" element={<Login></Login>}></Route>
           <Route exact path="/alluser" element={<AllUser></AllUser>}></Route>
           <Route exact path="/reportoperations" element={<ReportOperations></ReportOperations>}></Route>
-
+          <Route exact path="/forgotpassword" element={<ForgotPassword></ForgotPassword>}></Route>
+          <Route exact path="/user/changepassword" element={<ChangePassword></ChangePassword>}></Route>
           <Route exact path="/register" element={<Register></Register>}></Route>
           <Route path="*" element={<Error></Error>}></Route>
         </Routes>

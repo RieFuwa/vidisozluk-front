@@ -97,13 +97,11 @@ function User() {
             <p class="mt-8 text-black">
               Aktivite Puanı: {userPost.length * 100}{" "}
             </p>{" "}
-            {userById.id ==
-                    localStorage.getItem("signedUserId") ? (
-                      <div class="col-auto">
-                         <Notfication></Notfication>
-                      </div>
-                    ) : null}
-          
+            {userById.id == localStorage.getItem("signedUserId") ? (
+              <div class="col-auto">
+                <Notfication></Notfication>
+              </div>
+            ) : null}
             {/* <p class="mt-2 text-gray-500">Like Sayısı:</p>{" "} */}
           </div>{" "}
           <div class=" border-lime-600 border-2"></div>
@@ -146,10 +144,7 @@ function User() {
                               <Link to="/login">
                                 <span class="flex items-center text-xs dark:text-gray-400">
                                   {formatDate(key.createDate)} &emsp;{" "}
-                                  <FaHeart class="text-red-500 text-2xl">
-                                    {" "}
-                                  </FaHeart>
-                                  &nbsp; 11
+                                
                                   <ReportTitle
                                     userId={localStorage.getItem(
                                       "signedUserId"
@@ -158,6 +153,7 @@ function User() {
                                   ></ReportTitle>
                                   <CreateComment
                                     postId={key.id}
+                                    likeList={key.likeList}
                                     connectedPostId={key.id}
                                     userId={localStorage.getItem(
                                       "signedUserId"
@@ -169,16 +165,14 @@ function User() {
                             ) : (
                               <span class="flex items-center text-xs dark:text-gray-400">
                                 {formatDate(key.createDate)} &emsp;{" "}
-                                <FaHeart class="text-red-500 text-2xl">
-                                  {" "}
-                                </FaHeart>
-                                &nbsp; 11
+                               
                                 <ReportTitle
                                   userId={localStorage.getItem("signedUserId")}
                                   postId={key.id}
                                 ></ReportTitle>
                                 <CreateComment
                                   postId={key.id}
+                                  likeList={key.likeList}
                                   connectedPostId={key.id}
                                   userId={localStorage.getItem("signedUserId")}
                                   postTypeId={key.postType.id}

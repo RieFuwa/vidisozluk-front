@@ -59,7 +59,7 @@ function Login() {
       // }
     });
     setIsSend(true);
-    navigate(-1);
+    navigate("/");
   };
 
   return (
@@ -122,7 +122,14 @@ function Login() {
           >
             Giriş
           </button>
-
+          <p class="text-center text-sm text-gray-500">
+            Şifreni mi unuttun?
+            <Link to="/forgotpassword">
+              <button class=" text-lime-600 font-bold">
+                &nbsp; <span class="underline">Şifre Değiştir</span>
+              </button>
+            </Link>
+          </p>
           <p class="text-center text-sm text-gray-500">
             Hesabın yok mu?
             <Link to="/register">

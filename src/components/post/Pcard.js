@@ -105,6 +105,7 @@ function PostCard(props) {
                       <p class="row text-gray-600 dark:text-white">
                         {" "}
                         {key.postText}
+                        {key.likeList.length}
                       </p>
                       <div class="flex items-center mt-4">
                         <Link to={{ pathname: "/user/" + key.user.id }}>
@@ -129,12 +130,9 @@ function PostCard(props) {
                           </span>
                           {localStorage.getItem("signedUserId") == null ? (
                             <Link to="/login">
-                              <span class="flex items-center text-xs dark:text-gray-400">
+                              <span class="flex items-center  text-xs dark:text-gray-400">
                                 {formatDate(key.createDate)} &emsp;{" "}
-                                <FaHeart class="text-red-500 text-2xl">
-                                  {" "}
-                                </FaHeart>
-                                &nbsp; 11
+                              
                                 <ReportTitle
                                   userId={localStorage.getItem("signedUserId")}
                                   postId={key.id}
@@ -142,6 +140,7 @@ function PostCard(props) {
                                 <CreateComment
                                   getAllPost={getAllPost}
                                   postId={key.id}
+                                  likeList={key.likeList}
                                   connectedPostId={key.id}
                                   userId={localStorage.getItem("signedUserId")}
                                   postTypeId={key.postType.id}
@@ -151,14 +150,14 @@ function PostCard(props) {
                           ) : (
                             <span class="flex items-center text-xs dark:text-gray-400">
                               {formatDate(key.createDate)} &emsp;{" "}
-                              <FaHeart class="text-red-500 text-2xl"> </FaHeart>
-                              &nbsp; 11
+                             
                               <ReportTitle
                                 userId={localStorage.getItem("signedUserId")}
                                 postId={key.id}
                               ></ReportTitle>
                               <CreateComment
                                 postId={key.id}
+                                likeList={key.likeList}
                                 connectedPostId={key.id}
                                 userId={localStorage.getItem("signedUserId")}
                                 postTypeId={key.postType.id}

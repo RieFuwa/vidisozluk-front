@@ -7,15 +7,19 @@ import axios from "axios";
 import { DeleteWithAuth, PostWithAuth } from "../../services/HttpService";
 
 export default function CreateComment(props) {
+  const { postId, connectedPostId, userId, postTypeId, getAllPost, likeList } =
+    props;
   const [setIsLoadedPost] = useState(false);
   const [isSend, setIsSend] = useState(false);
-
   const [postById, setPostById] = useState([]);
   const [postCommentById, setPostCommentById] = useState([]);
   const [showModal, setShowModal] = React.useState(false);
   const isInitialMount = useRef(true);
-  const { postId, connectedPostId, userId, postTypeId,getAllPost } = props;
   const [isDeleted, setIsDeleted] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(likeList.length);
+  const [likeId, setLikeId] = useState(null);
+  let disabled = localStorage.getItem("signedUserId") == null ? false : true;
 
   let navigate = useNavigate();
 
@@ -101,13 +105,14 @@ export default function CreateComment(props) {
   const deleteComment = async () => {
     axios.delete("/post/" + postId, {
       headers: { authorization: localStorage.getItem("token") },
-    });    
-    navigate("/user/"+localStorage.getItem("signedUserId"));
-    await getAllPost()
+    });
+    navigate("/user/" + localStorage.getItem("signedUserId"));
+    await getAllPost();
   };
 
   useEffect(() => {
     getPostById();
+
     if (isInitialMount.current) {
       isInitialMount.current = false;
     } else {
@@ -120,6 +125,47 @@ export default function CreateComment(props) {
     setIsSend(false);
   };
 
+  const saveLike = async () => {
+    await PostWithAuth("/like/add", {
+      postId: postId,
+      userId: localStorage.getItem("signedUserId"),
+    })
+      .then(function (response) {
+        setLikeId(response.data.id);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const deleteLike = async () => {
+    axios.delete("/like/" + likeId, {
+      headers: { authorization: localStorage.getItem("token") },
+    });
+  };
+
+  const handleLike = async () => {
+    setIsLiked(!isLiked);
+    if (!isLiked) {
+      saveLike();
+      setLikeCount(likeCount + 1);
+    } else {
+      setLikeCount(likeCount - 1);
+      await deleteLike();
+    }
+  };
+  const checkLikes = () => {
+    var likeControl = likeList.find(
+      (like) => "" + like.userId === localStorage.getItem("signedUserId")
+    );
+    if (likeControl != null) {
+      setLikeId(likeControl.id);
+      setIsLiked(true);
+    }
+  };
+  useEffect(() => {
+    checkLikes();
+  }, []);
   return (
     <>
       <FaCommentDots
@@ -147,7 +193,23 @@ export default function CreateComment(props) {
                         <button>{postById.user.userName}</button>
                       </Link>
                     </span>
-                    <p class="text-sm "> {formatDate(postById.createDate)}</p>
+
+                    <span class="flex items-center  text-xs dark:text-gray-400">
+                      {formatDate(postById.createDate)} &emsp;{" "}
+                      <a
+                        disabled
+                        className=" p-1 text-dark"
+                        style={{ fontSize: "25px" }}
+                        onClick={disabled ? handleLike : null}
+                        aria-label="add to favorites"
+                      >
+                        <FaHeart
+                          class="text-2xl align-middle ml-5"
+                          style={isLiked ? { color: "lime" } : { color: "gray" }}
+                        />
+                      </a>
+                      &nbsp;<p class="font-bodyFont text-xl">{likeCount}</p> 
+                    </span>
                   </div>
                 </div>
                 {/*body*/}
@@ -184,10 +246,6 @@ export default function CreateComment(props) {
                             </span>
                             <span class="flex items-center text-xs dark:text-gray-400">
                               {formatDate(key.createDate)} &emsp;{" "}
-                              <FaHeart class="text-lime-600  align-middle ml-5 text-xl">
-                                {" "}
-                              </FaHeart>
-                              &nbsp; 11
                             </span>
                           </div>
                         </div>
