@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { formatDate } from "../FormatDate/StringFormatter";
 import CreateTitle from "../createTitle/CreateTitle";
 import CreateComment from "../createComment/CreateComment";
+import { FaCheckCircle } from "react-icons/fa";
 
 function PostCard(props) {
   const [error, setError] = useState(null);
@@ -104,6 +105,7 @@ function PostCard(props) {
                       <p class="row text-gray-600 dark:text-white">
                         {" "}
                         {key.postText}
+                        {key.likeList.length}
                       </p>
                       <div class="flex items-center mt-4">
                         <Link to={{ pathname: "/user/" + key.user.id }}>
@@ -113,20 +115,24 @@ function PostCard(props) {
                           </button>
                         </Link>
                         <div class="flex flex-col justify-between ml-2">
-                          <span class="text-sm flex items-center align-middle font-semibold  text-lime-600">
+                          <span class="text-sm flex  items-center align-middle font-semibold  text-lime-600">
                             <Link to={{ pathname: "/user/" + key.user.id }}>
-                              <button>{key.user.userName}</button>
+                              <button class="flex justify-start">
+                                {key.user.userName}{" "}
+                                <span>
+                                  {key.user.isVerified == true ? (
+                                    <FaCheckCircle class="text-lime-600 w-4 mt-1 ml-1 "></FaCheckCircle>
+                                  ) : null}
+                                </span>
+                              </button>
                             </Link>
                             &emsp;
                           </span>
                           {localStorage.getItem("signedUserId") == null ? (
                             <Link to="/login">
-                              <span class="flex items-center text-xs dark:text-gray-400">
+                              <span class="flex items-center  text-xs dark:text-gray-400">
                                 {formatDate(key.createDate)} &emsp;{" "}
-                                <FaHeart class="text-red-500 text-2xl">
-                                  {" "}
-                                </FaHeart>
-                                &nbsp; 11
+                              
                                 <ReportTitle
                                   userId={localStorage.getItem("signedUserId")}
                                   postId={key.id}
@@ -134,6 +140,7 @@ function PostCard(props) {
                                 <CreateComment
                                   getAllPost={getAllPost}
                                   postId={key.id}
+                                  likeList={key.likeList}
                                   connectedPostId={key.id}
                                   userId={localStorage.getItem("signedUserId")}
                                   postTypeId={key.postType.id}
@@ -143,14 +150,14 @@ function PostCard(props) {
                           ) : (
                             <span class="flex items-center text-xs dark:text-gray-400">
                               {formatDate(key.createDate)} &emsp;{" "}
-                              <FaHeart class="text-red-500 text-2xl"> </FaHeart>
-                              &nbsp; 11
+                             
                               <ReportTitle
                                 userId={localStorage.getItem("signedUserId")}
                                 postId={key.id}
                               ></ReportTitle>
                               <CreateComment
                                 postId={key.id}
+                                likeList={key.likeList}
                                 connectedPostId={key.id}
                                 userId={localStorage.getItem("signedUserId")}
                                 postTypeId={key.postType.id}

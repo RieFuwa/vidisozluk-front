@@ -6,6 +6,8 @@ import axios from "axios";
 import ReportTitle from "../components/createTitle/ReportTitle";
 import { formatDate } from "../components/FormatDate/StringFormatter";
 import CreateComment from "../components/createComment/CreateComment";
+import { FaCheckCircle } from "react-icons/fa";
+import Notfication from "../components/notification/Notification";
 
 function User() {
   const { userId } = useParams();
@@ -78,15 +80,28 @@ function User() {
               </div>{" "}
             </div>{" "}
           </div>{" "}
-          <div class="mt-28  text-center border-b pb-12">
+          <div class="mt-28 text-center border-b pb-12">
             {" "}
-            <h1 class="text-4xl font-medium text-gray-700">
+            <h1 class=" text-4xl font-medium flex justify-center  text-center text-gray-700">
               {userById.userName}
+              <span class="">
+                {userById.isVerified == true ? (
+                  <FaCheckCircle class="text-lime-600 w-6 mt-1 ml-1 "></FaCheckCircle>
+                ) : null}
+              </span>
+              {/* {userById.isVerified == true ? (
+                  <FaCheckCircle class="text-lime-600 w-6 mt-1 ml-1 "></FaCheckCircle>
+                ) : null} */}
             </h1>{" "}
             <p class="font-light text-gray-600 mt-3">{userById.userMail} </p>{" "}
             <p class="mt-8 text-black">
               Aktivite Puanı: {userPost.length * 100}{" "}
             </p>{" "}
+            {userById.id == localStorage.getItem("signedUserId") ? (
+              <div class="col-auto">
+                <Notfication></Notfication>
+              </div>
+            ) : null}
             {/* <p class="mt-2 text-gray-500">Like Sayısı:</p>{" "} */}
           </div>{" "}
           <div class=" border-lime-600 border-2"></div>
@@ -129,10 +144,7 @@ function User() {
                               <Link to="/login">
                                 <span class="flex items-center text-xs dark:text-gray-400">
                                   {formatDate(key.createDate)} &emsp;{" "}
-                                  <FaHeart class="text-red-500 text-2xl">
-                                    {" "}
-                                  </FaHeart>
-                                  &nbsp; 11
+                                
                                   <ReportTitle
                                     userId={localStorage.getItem(
                                       "signedUserId"
@@ -141,6 +153,7 @@ function User() {
                                   ></ReportTitle>
                                   <CreateComment
                                     postId={key.id}
+                                    likeList={key.likeList}
                                     connectedPostId={key.id}
                                     userId={localStorage.getItem(
                                       "signedUserId"
@@ -152,16 +165,14 @@ function User() {
                             ) : (
                               <span class="flex items-center text-xs dark:text-gray-400">
                                 {formatDate(key.createDate)} &emsp;{" "}
-                                <FaHeart class="text-red-500 text-2xl">
-                                  {" "}
-                                </FaHeart>
-                                &nbsp; 11
+                               
                                 <ReportTitle
                                   userId={localStorage.getItem("signedUserId")}
                                   postId={key.id}
                                 ></ReportTitle>
                                 <CreateComment
                                   postId={key.id}
+                                  likeList={key.likeList}
                                   connectedPostId={key.id}
                                   userId={localStorage.getItem("signedUserId")}
                                   postTypeId={key.postType.id}

@@ -42,7 +42,7 @@ export default function CreateTitle(props) {
       return;
     }
     if (title.postText.length === 0) {
-      console.log("girdis");
+     
       setFormError({
         ...inputError,
         postText: "acıklama kısmı boş bırakılamaz.",

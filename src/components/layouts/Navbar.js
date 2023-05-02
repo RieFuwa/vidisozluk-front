@@ -9,6 +9,7 @@ function Navbar() {
     localStorage.removeItem("token");
     localStorage.removeItem("signedUserId");
     localStorage.removeItem("role");
+    localStorage.removeItem("changePasswordUserMail");
     navigate("/");
   };
   return (
@@ -109,7 +110,7 @@ function Navbar() {
           <div class="sm:flex sm:gap-2">
             {roleList.includes("ROLE_ADMIN") == true ? (
               <Link to="/adminpage">
-                {console.log(roleList)}
+               
                 <button
                   class="px-4 py-2 bg-lime-600 sm:mt-1 npm install react-icons --save
         hover:bg-lime-700  duration-200 transition text-white rounded-lg  text-sm font-medium   text-center"
