@@ -1,10 +1,11 @@
-# vidisozluk-front
+# vidisozluk-frontend
 
-### -The user should enter the required values correctly during registration.
-### -The user cannot submit an empty post.
-### -Post search is available.
-### -If the user has an admin role, they can access the admin panel. The relevant rules are written by Spring Security.
-### -A user who does not log in to the application cannot interact.
+### - The user should enter the required values correctly during registration.
+### - The user cannot submit an empty post.
+### - Post search is available.
+### - If the user has an admin role, they can access the admin panel. The relevant rules are written by Spring Security.
+### - A user who does not log in to the application cannot interact.
+### - The user performs actions based on the token they possess.
 ## What the app looks like
 ![Ana Sayfa](https://github.com/RieFuwa/vidisozluk-front/assets/71210936/db212867-448c-4d84-84a7-f93ae6102d5a)
 
