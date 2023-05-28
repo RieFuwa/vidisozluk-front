@@ -1,7 +1,10 @@
 # vidisozluk-front
+
 ### -The user should enter the required values correctly during registration.
 ### -The user cannot submit an empty post.
 ### -Post search is available.
+### -If the user has an admin role, they can access the admin panel. The relevant rules are written by Spring Security.
+
 ## What the app looks like
 ![Ana Sayfa](https://github.com/RieFuwa/vidisozluk-front/assets/71210936/db212867-448c-4d84-84a7-f93ae6102d5a)
 
