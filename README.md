@@ -1,5 +1,5 @@
 # vidisozluk-frontend
-
+### - ReactJS and Tailwind CSS have been used.
 ### - The user should enter the required values correctly during registration.
 ### - The user cannot submit an empty post.
 ### - Post search is available.
